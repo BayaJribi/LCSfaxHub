@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "date": "11",
+        "month": "Aug",
+        "year": "2024",
+        "author": "OC Rumble",
+        "category": "Event",
+        "title": "Global Village 2024",
+        "image": "LC_Hero_1.jpg"
+    },
+    {
+        "id": 2,
+        "date": "24",
+        "month": "Oct",
+        "year": "2024",
+        "author": "OC ??",
+        "category": "Conference",
+        "title": "SMS 2k24",
+        "image": "LC_Hero_1.jpg"
+    },
+    {
+        "id": 3,
+        "date": "00",
+        "month": "Dec",
+        "year": "2024",
+        "author": "OC ??",
+        "category": "Event",
+        "title": "Prolink 2.0",
+        "image": "LC_Hero_1.jpg"
+    }
+]
