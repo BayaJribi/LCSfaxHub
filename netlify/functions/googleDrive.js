@@ -3,6 +3,7 @@
 require('dotenv').config(); // Load environment variables
 const axios = require('axios');
 
+// Function to get a new access token using refresh token
 async function getAccessToken() {
     const refreshToken = process.env.REFRESH_TOKEN;
     const clientId = process.env.CLIENT_ID;
@@ -12,7 +13,7 @@ async function getAccessToken() {
 
     try {
         const response = await axios.post(tokenUrl, null, {
-            params: {   
+            params: {
                 client_id: clientId,
                 client_secret: clientSecret,
                 refresh_token: refreshToken,
@@ -27,10 +28,11 @@ async function getAccessToken() {
     }
 }
 
+// Function to list files in a specific Google Drive folder
 async function listFilesInFolder(folderId) {
     const accessToken = await getAccessToken(); // Get the latest access token
 
-    const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}' in parents&fields=files(id,name,mimeType)`;
+    const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}' in parents&fields=files(id,name,mimeType,webViewLink)`; // Include webViewLink in fields
 
     try {
         const response = await axios.get(url, {

@@ -1,0 +1,38 @@
+IMPORTANT! 
+To whoever it may concern:
+You are now the manager of the hub data that exists in this folder.
+the process is very simple. We have a folder for each category:
+
+Knowledge Source
+|
+|__FrontOffice
+|  |_OGV
+|  |_OGT
+|  |_IGV
+|  |_MKT
+|
+|__BackOffice
+|  |_F&L
+|  |_TM&MXP
+|  |_BD&EwA
+|  |_IM
+|
+|__Applications
+|  |_EST
+|  |_OCTeam
+|  |_MM
+|
+|__Ressource
+|  |_National
+|  |_AI
+|		
+|_AIESECShop
+
+All you have to do , is add your file to its specific folder, and it would automatically appear in the hub :D
+
+!!!!!!!!!!!! ATTENTION !!!!!!!!!!!!!!
+If you wish to add an application, Please Do it in the following form : 
+NameOfThePosition-ApplicantName
+to ensure that it displays correctly in the hub
+Example : YSF 2024 OCVP F - Baya Jribi.pdf  
+The "-" ensures that the applicant names displays on the hub ! 
