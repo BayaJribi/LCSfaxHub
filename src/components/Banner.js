@@ -9,7 +9,7 @@ function Banner({ PageName, Category }) {
                     <h1 className="display-4 text-white">{PageName}</h1>
                     {/* Use --secondary color for <a> tags */}
                     <a href="/" style={{ color: 'var(--secondary)' }}>Home {'> '}</a>
-                    <a href="#" style={{ color: 'var(--secondary)' }}>{Category}{PageName}</a>
+                    <a href={`/${Category}${PageName}`} style={{ color: 'var(--secondary)' }}>{Category}{PageName}</a>
                 </div>
             </div>
         </div>

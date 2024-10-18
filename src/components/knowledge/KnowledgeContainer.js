@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../../App.css'; // Import your CSS styles
 import Element from '../Element'; // Import Element component
 
-function KnowledgeContainer({ folderId, categoryName, displayTitle }) {
+function KnowledgeContainer({ folderId, categoryName, displayTitle}) {
     const [applications, setApplications] = useState([]); // State to hold applications data
     const [loading, setLoading] = useState(true); // State to manage loading status
     const [error, setError] = useState(null); // State to manage error status
@@ -19,7 +19,7 @@ function KnowledgeContainer({ folderId, categoryName, displayTitle }) {
                 const formattedData = data.map(file => ({
                     pdfUrl: file.webViewLink, // URL to open the PDF
                     title: file.name.replace('.pdf', ''), // Assuming the title is the file name without the extension
-                    pdfImage: '', // Assuming no preview image
+                    pdfImage:'', // Assuming no preview image
                     category: categoryName, // Use the passed category name
                 }));
 

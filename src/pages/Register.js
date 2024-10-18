@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase/Firebase';
-import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate and Link
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Import useAuth to check authentication
 import '../css/register.css'; // Ensure you have this CSS file for styling
 
 const Register = () => {
+  const { currentUser } = useAuth(); // Get current user from AuthContext
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // If user is already logged in, redirect to the home page
+    if (currentUser) {
+      navigate('/');
+    }
+  }, [currentUser, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,6 +69,11 @@ const Register = () => {
     }
   };
 
+  if (currentUser) {
+    // Redirect to home page if the user is already logged in
+    return null;
+  }
+
   return (
     <section className="vh-100 gradient-custom">
       <div className="container py-5 h-100">
@@ -99,7 +113,7 @@ const Register = () => {
                     </div>
 
                     <button className="btn btn-outline-light btn-lg px-5" type="submit">Register</button>
-                    
+
                     {error && <p style={{ color: 'red' }}>{error}</p>}
                     {success && <p style={{ color: 'green' }}>{success}</p>}
                   </form>

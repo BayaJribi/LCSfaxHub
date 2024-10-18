@@ -67,7 +67,7 @@ function Header() {
 
           {/* Conditionally render Logout if the user is logged in */}
           {currentUser ? (
-            <a className="btn btn-link nav-item nav-link" onClick={handleLogout}>
+            <a href="/login"className="btn btn-link nav-item nav-link" onClick={handleLogout}>
               <FontAwesomeIcon icon={faArrowRightFromBracket}  /> {/* Updated icon usage */}
             </a>
           ) : (

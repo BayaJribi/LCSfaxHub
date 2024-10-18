@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import PrivateRoute from './components/PrivateRoute'; // Import PrivateRoute
 import { AuthProvider } from './context/AuthContext'; // Wrap app with AuthProvider
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
             <Route path="/knowledge-hub/resources" element={<PrivateRoute><Resources /></PrivateRoute>} />
             <Route path="/ConferencesOutput" element={<PrivateRoute><ConferencesOutput /></PrivateRoute>} />
             <Route path="/AIESECShop" element={<PrivateRoute><AIESECShop /></PrivateRoute>} />
+            <Route path="*" element={<NotFound />} />
+
           </Routes>
         </div>
       </Router>

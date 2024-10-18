@@ -1,35 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/Firebase'; // Import your Firebase config
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Import useAuth for accessing authentication state
 import '../css/register.css'; // Custom CSS for additional styling
 
 const Login = () => {
+    const { currentUser } = useAuth(); // Get current user from AuthContext
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState('');
+    const navigate = useNavigate();
 
-    const navigate = useNavigate(); // Initialize useNavigate
+    useEffect(() => {
+        // If user is already logged in, redirect to the home page
+        if (currentUser) {
+            navigate('/');
+        }
+    }, [currentUser, navigate]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             await signInWithEmailAndPassword(auth, email, password);
             setSuccess("Login successful!");
-            // alert("Login successful!");
-
             // Redirect to Home.js
             navigate('/'); // Adjust the path based on your routing setup
-
-            // Reset form fields
-            setEmail('');
+            setEmail(''); // Reset form fields
             setPassword('');
         } catch (error) {
             console.error("Error logging in:", error);
             setError("Login failed. Please check your email and password.");
         }
     };
+
+    if (currentUser) {
+        // Redirect to home page if the user is already logged in
+        return null;
+    }
 
     return (
         <section className="vh-100 gradient-custom">
@@ -38,7 +47,7 @@ const Login = () => {
                     <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                         <div className="card bg-dark text-white" style={{ borderRadius: '1rem' }}>
                             <div className="card-body p-5 text-center">
-                                <div className=" mt-md-4 pb-5">
+                                <div className="mt-md-4 pb-5">
                                     <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
                                     <p className="text-white-50 mb-5">Please enter your login and password!</p>
 
@@ -74,7 +83,6 @@ const Login = () => {
                                         </p>
 
                                         <button className="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-
 
                                         {error && <p style={{ color: 'red' }}>{error}</p>}
                                         {success && <p style={{ color: 'green' }}>{success}</p>}
