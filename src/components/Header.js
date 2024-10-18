@@ -1,8 +1,25 @@
-import { Link, useLocation } from 'react-router-dom'; // Import useLocation from react-router-dom
+import { Link, useLocation, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useAuth } from '../context/AuthContext'; // Import useAuth from your AuthContext
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase/Firebase';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'; // Import specific icon
+
 import '../App.css';
 
 function Header() {
   const location = useLocation(); // Get the current location
+  const { currentUser } = useAuth(); // Get the current user from context
+  const navigate = useNavigate(); // Use navigate for redirection
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth); // Sign out user from Firebase
+      navigate('/login'); // Redirect to login page after logout
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
@@ -33,9 +50,6 @@ function Header() {
               <Link to="/knowledge-hub/back-office" className={`custom-dropdown-item dropdown-item ${location.pathname === '/knowledge-hub/back-office' ? 'active' : ''}`}>
                 Back Office
               </Link>
-              <Link to="/knowledge-hub/applications" className={`custom-dropdown-item dropdown-item ${location.pathname === '/knowledge-hub/applications' ? 'active' : ''}`}>
-                Applications
-              </Link>
               <Link to="/knowledge-hub/resources" className={`custom-dropdown-item dropdown-item ${location.pathname === '/knowledge-hub/resources' ? 'active' : ''}`}>
                 Resources
               </Link>
@@ -50,6 +64,17 @@ function Header() {
           <Link to="/Contact" className={`nav-item nav-link ${location.pathname === '/Contact' ? 'active' : ''}`}>
             Contact
           </Link>
+
+          {/* Conditionally render Logout if the user is logged in */}
+          {currentUser ? (
+            <a className="btn btn-link nav-item nav-link" onClick={handleLogout}>
+              <FontAwesomeIcon icon={faArrowRightFromBracket}  /> {/* Updated icon usage */}
+            </a>
+          ) : (
+            <Link to="/login" className={`nav-item nav-link ${location.pathname === '/login' ? 'active' : ''}`}>
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>
