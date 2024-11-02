@@ -1,7 +1,7 @@
-const { listFilesInFolder } = require('./googleDrive'); // Import the function
+const { listFilesInFolder } = require('./googleDrive');
 
-exports.handler = async function(event, context) {
-    const folderId = event.queryStringParameters.folderId; // Get folderId from query parameters
+exports.handler = async function(event) {
+    const folderId = event.queryStringParameters.folderId;
 
     if (!folderId) {
         return {
@@ -11,23 +11,19 @@ exports.handler = async function(event, context) {
     }
 
     try {
-        const files = await listFilesInFolder(folderId); // Call the function to list files
-        console.log('Files retrieved:', files); // Log the files for debugging
-
+        const files = await listFilesInFolder(folderId);
         return {
             statusCode: 200,
-            body: JSON.stringify(files), // Return files as JSON
+            body: JSON.stringify(files),
         };
     } catch (error) {
-        // Log the full error object for better insight
         console.error('Error in getFiles handler:', error);
-
         return {
             statusCode: 500,
             body: JSON.stringify({
-                error: error.message, 
-                details: error.response ? error.response.data : 'No additional error data',
-            }), // Return more detailed error message
+                error: 'Failed to fetch files',
+                details: error.message,
+            }),
         };
     }
 };

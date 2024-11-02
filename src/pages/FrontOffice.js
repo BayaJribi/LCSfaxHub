@@ -11,6 +11,11 @@ function FrontOffice() {
             <div className="secondary-Background-color">
                 <Banner PageName="Front Office" Category="Knowledge Hub > " /> {/* This is the correct way to pass a prop */}
                 <div className='py-5'>
+                <KnowledgeContainer
+                        folderId="1iQCOoDpaa8tYAhB49Cx-jF6SvVYOZvFu"
+                        categoryName="Exchange"
+                        displayTitle="Exchange"
+                    />
                     <KnowledgeContainer
                         folderId="1u8jkrX57fNbPrpA50-xcOuHcAxTUL2by"
                         categoryName="OGV"

@@ -6,8 +6,8 @@ function Event({ date, month, year, author, category, title, image }) {
         <div className="col-lg-4">
             <div className="blog-item">
                 <div className="position-relative overflow-hidden">
-                    {/* Prepend /images/ to the image path */}
-                    <img className="img-fluid" src={`/images/${image}`} alt={title} />
+                    {/* Apply medium-image class */}
+                    <img className=" medium-image" src={`/images/${image}`} alt={title} />
                 </div>
                 <div className="bg-white d-flex">
                     <div className="flex-shrink-0 d-flex flex-column justify-content-center text-center main-Background-color text-white px-4">

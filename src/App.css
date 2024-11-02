@@ -146,6 +146,13 @@ h6,
   background: rgba(21, 36, 64, .7);
   z-index: 1;
 }
+/* In App.css */
+.medium-image {
+  width: 100%; /* Ensures the image is responsive within its container */
+  height: 220px; /* Medium max width */
+  object-fit: cover; /* Ensures the image covers the container evenly */
+}
+
 
 @media (max-width: 576px) {
   .carousel-caption h5 {
@@ -282,16 +289,19 @@ h6,
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Make sure it covers the entire view */
+  height: 100vh; /* Full viewport height */
+  flex-direction: column;
+  text-align: center;
 }
 
 .spinner {
-  border: 8px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #3498db; /* Change this color to match your theme */
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid var(--primary); /* Primary color */
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   animation: spin 1s linear infinite;
+  margin-bottom: 10px;
 }
 
 @keyframes spin {

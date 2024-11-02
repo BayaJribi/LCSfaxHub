@@ -11,7 +11,7 @@ function Hero() {
                         <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div className="p-3">
                                 <h5 className="text-white text-uppercase">Welcome</h5>
-                                <h1 className="display-1 text-white mb-md-4">To LC Sfax Hub</h1>
+                                <h1 className="display-1 text-white mb-md-4">To AIESEC in Sfax Hub</h1>
                             </div>
                         </div>
                     </div>

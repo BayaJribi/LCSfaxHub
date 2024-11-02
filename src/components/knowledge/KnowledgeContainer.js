@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import '../../App.css'; // Import your CSS styles
-import Element from '../Element'; // Import Element component
+import '../../App.css';
+import Element from '../Element';
 
-function KnowledgeContainer({ folderId, categoryName, displayTitle}) {
-    const [applications, setApplications] = useState([]); // State to hold applications data
-    const [loading, setLoading] = useState(true); // State to manage loading status
-    const [error, setError] = useState(null); // State to manage error status
+function KnowledgeContainer({ folderId, categoryName, displayTitle }) {
+    const [applications, setApplications] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchApplications = async () => {
             try {
                 const response = await fetch(`/.netlify/functions/getFiles?folderId=${folderId}`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                if (!response.ok) throw new Error('Failed to load files');
+                
                 const data = await response.json();
-
                 const formattedData = data.map(file => ({
-                    pdfUrl: file.webViewLink, // URL to open the PDF
-                    title: file.name.replace('.pdf', ''), // Assuming the title is the file name without the extension
-                    pdfImage:'', // Assuming no preview image
-                    category: categoryName, // Use the passed category name
+                    pdfUrl: file.webViewLink,
+                    title: file.name.replace('.pdf', ''),
+                    pdfImage: '', 
+                    category: categoryName,
                 }));
-
+                
                 setApplications(formattedData);
             } catch (error) {
                 setError(error.message);
@@ -32,19 +30,16 @@ function KnowledgeContainer({ folderId, categoryName, displayTitle}) {
         };
 
         fetchApplications();
-    }, [folderId, categoryName]); // Re-run the effect if folderId or categoryName changes
+    }, [folderId, categoryName]);
 
-    if (loading) {
-        return (
-            <div className="spinner-container">
-                <div className="spinner"></div>
-            </div>
-        ); // Render loading spinner
-    }
+    if (loading) return (
+        <div className="spinner-container">
+            <div className="spinner"></div>
+            <p>Loading data, please wait...</p>
+        </div>
+    );
 
-    if (error) {
-        return <div>Error: {error}</div>; // Render error state
-    }
+    if (error) return <div>Error: {error}</div>;
 
     return (
         <div className="container-fluid py-4 px-5 secondary-Background-color">

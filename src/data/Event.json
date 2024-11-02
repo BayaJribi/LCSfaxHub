@@ -7,7 +7,7 @@
         "author": "OC Rumble",
         "category": "Event",
         "title": "Global Village 2024",
-        "image": "LC_Hero_1.jpg"
+        "image": "OC Rumble.jpg"
     },
     {
         "id": 2,
@@ -17,7 +17,7 @@
         "author": "OC 197",
         "category": "Conference",
         "title": "SMS 2k24",
-        "image": "LC_Hero_1.jpg"
+        "image": "OC 197.jpeg"
     },
     {
         "id": 3,
@@ -27,6 +27,6 @@
         "author": "OC ??",
         "category": "Event",
         "title": "Prolink 2.0",
-        "image": "LC_Hero_1.jpg"
+        "image": "Prolink.jpg"
     }
 ]

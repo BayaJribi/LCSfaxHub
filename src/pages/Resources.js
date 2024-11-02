@@ -12,6 +12,11 @@ function Resources() {
             <div className="secondary-Background-color">
                 <Banner PageName="Ressources" Category="Knowledge Hub > " /> {/* This is the correct way to pass a prop */}
                 <div className="py-5">
+                <KnowledgeContainer
+                        folderId="1wH6px3NEZ_Z8q6uAZxsr5K64AHLutjs3"
+                        categoryName="Local"
+                        displayTitle="Local Ressources"
+                    />
                     <KnowledgeContainer
                         folderId="1Cx8QriTKDGO9BXEnC6J0Nbu76pRPatE5"
                         categoryName="National"

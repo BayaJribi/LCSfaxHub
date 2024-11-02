@@ -24,7 +24,7 @@ function Header() {
   return (
     <nav className="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
       <Link to="/" className="navbar-brand p-0">
-        <h1 className="m-0 text-uppercase">LC Sfax Hub</h1>
+        <h1 className="m-0 text-uppercase"><img src='Logo LC.png' width={55} />&nbsp;&nbsp; LC Sfax Hub</h1>
       </Link>
       <button
         className="navbar-toggler"
@@ -61,9 +61,10 @@ function Header() {
           <Link to="/AIESECShop" className={`nav-item nav-link ${location.pathname === '/AIESECShop' ? 'active' : ''}`}>
             AIESEC Shop
           </Link>
-          <Link to="/Contact" className={`nav-item nav-link ${location.pathname === '/Contact' ? 'active' : ''}`}>
+          <div className='p-5'></div>
+          {/* <Link to="/Contact" className={`nav-item nav-link ${location.pathname === '/Contact' ? 'active' : ''}`}>
             Contact
-          </Link>
+          </Link> */}
 
           {/* Conditionally render Logout if the user is logged in */}
           {currentUser ? (
