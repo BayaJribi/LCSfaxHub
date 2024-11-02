@@ -4,10 +4,11 @@ const path = require('path');
 
 // Path to the Service Account JSON key file
 const KEY_PATH = path.join(__dirname, '../../.service-account-key.json');
+const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 // Authenticate using Service Account credentials
 const auth = new google.auth.GoogleAuth({
-    keyFile: KEY_PATH,
+    keyFile: googleApiKey,
     scopes: ['https://www.googleapis.com/auth/drive.readonly'],
 });
 
