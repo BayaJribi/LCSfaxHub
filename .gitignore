@@ -13,7 +13,7 @@
 
 # misc
 .env
-service-account-key.json
+.service-account-key.json
 .DS_Store
 .env.local
 .env.development.local
