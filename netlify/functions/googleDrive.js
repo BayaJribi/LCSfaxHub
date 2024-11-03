@@ -1,21 +1,34 @@
-// List files in a specific Google Drive folder using the API key
-const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+require('dotenv').config();
+const { google } = require('googleapis');
+const path = require('path');
 
+// Path to the Service Account JSON key file
+const KEY_PATH = path.join(__dirname, '../../.service-account-key.json');
+
+// Authenticate using Service Account credentials
+const auth = new google.auth.GoogleAuth({
+    keyFile: KEY_PATH,
+    scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+});
+
+// Google Drive API client
+const drive = google.drive({ version: 'v3', auth });
+
+// Function to list files in a specific Google Drive folder
 async function listFilesInFolder(folderId) {
     try {
-        // Direct API request to Google Drive using the API key
-        const response = await fetch(`https://www.googleapis.com/drive/v3/files?q='${folderId}' in parents&fields=files(id,name,mimeType,webViewLink)&key=${googleApiKey}`);
-        const data = await response.json();
+        const response = await drive.files.list({
+            q: `'${folderId}' in parents`,
+            fields: 'files(id, name, mimeType, webViewLink)',
+        });
 
-        if (response.ok) {
-            return data.files; // Return the list of files
-        } else {
-            throw new Error(data.error.message || 'Failed to fetch files');
-        }
+        return response.data.files; // Return the list of files
     } catch (error) {
         console.error('Error fetching files:', error.message);
         throw new Error('Failed to fetch files from Google Drive');
     }
 }
 
-export default listFilesInFolder;
+module.exports = {
+    listFilesInFolder,
+};
