@@ -9,7 +9,6 @@ exports.handler = async function(event) {
             body: JSON.stringify({ error: 'Folder ID is required' }),
         };
     }
-
     try {
         const files = await listFilesInFolder(folderId);
         return {

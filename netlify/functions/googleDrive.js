@@ -1,15 +1,35 @@
 require('dotenv').config();
 const { google } = require('googleapis');
 const path = require('path');
-
 // Path to the Service Account JSON key file
-const KEY_PATH = path.join(__dirname, '../../.service-account-key.json');
 
+privateKey=process.env.PRIVATE_KEY.replace('"', '');
 // Authenticate using Service Account credentials
-const auth = new google.auth.GoogleAuth({
-    keyFile: KEY_PATH,
-    scopes: ['https://www.googleapis.com/auth/drive.readonly'],
-});
+let auth;
+try {
+    auth = new google.auth.GoogleAuth({
+        credentials: {
+            type: process.env.TYPE,
+            project_id: process.env.PROJECT_ID,
+            private_key_id: process.env.PRIVATE_KEY_ID,
+            private_key: privateKey.replace(/\\n/g, '\n'),
+            client_email: process.env.CLIENT_EMAIL.replace(',', ''),
+            client_id: process.env.CLIENT_ID,
+            auth_uri: process.env.AUTH_URI,
+            token_uri: process.env.TOKEN_URI,
+            auth_provider_x509_cert_url: process.env.AUTH_PROVIDER_CERT_URL,
+            client_x509_cert_url: process.env.CLIENT_CERT_URL,
+        },
+        scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+    });
+
+    console.log('GoogleAuth initialized successfully');
+} catch (error) {
+
+    console.error('Error initializing GoogleAuth:', error.message);
+}
+
+
 
 // Google Drive API client
 const drive = google.drive({ version: 'v3', auth });
